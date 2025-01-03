@@ -1,0 +1,18 @@
+\section{Nozioni generali sull'utilizzo di HEC-HMS}
+\subsection{Metodo CN-SCS}
+Il metodo CN-SCS permette di quantificare il volume di pioggia che può diventare deflusso di runoff, a seconda delle caratteristiche del suolo e del soprassuolo.\\
+Infatti, un suolo impermeabilizzato risponderà in modo differente rispetto ad uno vegetato.\\
+Semplificando, è possibile quantificare le tendenze del suolo e del soprassuolo a generare deflusso, infiltrazione o perdita iniziale di pioggia, mediante l'attribuzione di un preciso valore, in una scala da 0 a 100 (ovvero dalla condizione più permeabile alla più impermeabile).\\
+Generalmente, i valori di CN (\textit{curve number}) sono riportati in varie tabelle, a seconda della natura del bacino di studio.\\
+Per esempio, al seguente link si riportano le tabelle rese disponibili dal manuale di utilizzo del manuale di HEC-HMS: \cite{cn_tables_hec_hms}.
+
+\subsection{Time Lag}
+Il tempo di lag (ritardo) è lo scostamento che interessa una qualsiasi quantità d'acqua in movimento all'interno di un elemento del bacino (un sottobacino, un tratto di canale,...).\\
+A seconda del caso, può quantificare la distanza in minuti tra i baricentri di precipitazione e deflusso, oppure la differenza temporale tra il baricentro di precipitazione ed il picco di deflusso.\\
+Questo fattore non genera alcuna perdita di volume di acqua o diffusione del processo. 
+
+\subsection{Coefficiente di Nash-Sutcliffe}
+Il coefficiente di Nash-Sutcliffe è un parametro statistico che permette di valutare come la predizione idrologica sia affidabile rispetto all'evento reale.\\
+La bontà di predizione viene valutata mediante un range tra 0 e 1, dove quest'ultimo indica che la simulazione è uguale al fenomeno osservato. Valori superiori a 0.9 risultano sufficientemente buoni per accettare l'ottimizzazione del modello idrologico.\\
+Infatti, l'applicazione pratica del coefficiente di Nash-Sutcliffe è paragonabile al parametro statistico di scostamento $R^2$.\\
+Ulteriori informazioni su questo indicatore statistico possono essere ricavate dalla voce Wikipedia \cite{nash-sutcliffe}.

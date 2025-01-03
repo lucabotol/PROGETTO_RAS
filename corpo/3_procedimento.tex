@@ -1,0 +1,93 @@
+\section{Analisi dei dati}
+In questa sezione si andrà ad esporre la procedura di analisi di una qualsiasi serie pluviometrica. Per semplificare la lettura della relazione, i risultati numerici verranno riportati nei capitoli successivi.\\
+Mediante l'elaborazione dei dati pluviometrici è possibile mettere in relazione l'entità degli eventi estremi e la loro probabilità di accadimento, che in ogni caso è in relazione inversamente proporzionale. Questo processo, successivamente, permetterà di estrarre dal campione di dati (riferiti ad alcuni anni), la LSPP (Linea Segnalatrice di Probabilità Pluviometrica).\\
+Per questa relazione, i dati pluviometrici ci sono stati forniti dal Professore, pur essendo di un'area diversa da quella di studio.
+\subsection{POT}
+Generalmente, il campione della serie è formato dai massimi annuali di precipitazione di tutta la popolazione.\\
+In questo caso invece, i valori verranno estratti secondo il metodo dei \textit{Peak over Threshold} (Picchi superiori al limite, POT): fissata una soglia inferiore, si andrà a considerare solamente i valori uguali o superiori ad essa.\\
+Matematicamente, il metodo POT viene descritto così:
+
+   \begin{equation} 
+  P(Y_{\text{max}} < x) = \sum_{n=1}^{\infty} p(n) F(x)^n = \sum_{n=1}^{\infty} \frac{\lambda^n e^{-n}}{n!} \left\{ 1 - \left[ 1 + \frac{\xi}{\psi} (x - s) \right]^{\frac{1}{\xi}} \right\}^n
+\label{equazione_pot}   
+\end{equation}
+All'interno dell'equazione \ref{equazione_pot} sono presenti due formule di distribuzione:
+\begin{itemize}
+    \item Distribuzione di Poisson: rappresenta la distribuzione di probabilità discreta dell'evento di studio;
+    \item Distribuzione generalizzata di Pareto: rappresenta la distribuzione dei valori eccedenti alla soglia di riferimento posta.
+\end{itemize}
+
+Il parametro di soglia (\textit{s}) viene posto a discrezione da chi esegue i calcoli; generalmente, il numero di valori da isolare dovrebbe coincidere con il numero di anni della serie.\\
+Il parametro $\xi$ si ricava dalla formula:
+\begin{equation}
+    \xi = \frac{1}{2} \left[1- \left( \frac{\mu - s}{\sigma} \right)^2 \right] 
+\end{equation}
+
+Il valore di $\psi$ si calcola mediante la formula:
+\begin{equation}
+    \psi = \sigma(1-\xi) \sqrt{(1-2 \cdot \xi)}
+\end{equation}
+
+Il parametro $\lambda$ si ricava dal rapporto tra il numero di valori considerati e gli anni della serie:
+\begin{equation}
+    \lambda = \frac{n}{N}
+\end{equation}
+
+Infine, la probabilità di superamento dell'evento $F_{x_i}$ si ricava dalla distribuzione generalizzata di Pareto (GPD):
+\begin{equation}
+F_{x_i} = 1- \left[ 1+\xi\left(\frac{x_i - s}{\psi}\right)\right]^{-\frac{1}{\xi}}
+\label{prob_non_super_pareto}
+\end{equation}
+
+Il vantaggio di questo metodo, rispetto a quello che interessa solamente i singoli massimi annui, è che il campione risultante considera anche gli eventi di entità minori.
+
+\subsection{Analisi preliminare di elaborazione dati}
+Per poter estrarre l'altezza critica di precipitazione, data una serie pluviometrica, è necessario svolgere alcune procedure preliminari sulla popolazione:
+\begin{itemize}
+    \item ordinare in ordine decrescente i valori di precipitazione;
+    \item fissare una soglia inferiore di riferimento;
+    \item eliminare i valori di precipitazione minori, solamente nel caso in cui ce ne fossero alcuni dipendenti da altri;
+    \item procedere con l'elaborazione statistica.
+\end{itemize}
+
+\subsection{Plotting position}
+Mediante la plotting position è possibile verificare la bontà della distribuzione dei valori.\\
+Ad ogni valore della serie, posta in ordine crescente, viene attribuito un valore dipendente alla sua posizione numerica, tramite la formula:
+\begin{equation}
+   P= \frac{i}{n+1}
+\end{equation}
+Questo parametro indica la possibilità di non superamento dell'evento, che sarà sempre maggiore all'aumentare della posizione nella serie.
+
+\subsection{Valutazione visiva dell'accoppiamento}
+Avendo calcolato la plotting position per ogni valore della serie, è possibile associare la relativa probabilità di non superamento dell'evento, attraverso la formula \ref{prob_non_super_pareto}.\\
+Infine, per effettuare la valutazione visiva della bontà di accoppiamento, è necessario creare un grafico dove in ascissa viene posta la plotting position ed in ordinata la probabilità di non superamento dell'evento.
+
+
+\subsection{Altezza critica di precipitazione}
+Dopo aver processato i dati del campione statistico ed aver valutato la bontà di accoppiamento con la serie teorica, è possibile calcolare la relativa altezza critica di precipitazione (dato un certo tempo di ritorno), mediante la formula:
+\begin{equation}
+    h_{T_R} = s + \frac{\psi}{\xi} \left[ \left(\frac{1}{\lambda \cdot T_R} \right) ^{-\xi} - 1 \right]
+    \label{h_critica_tr}
+\end{equation}
+
+\subsection{LSPP}
+La Linea Segnalatrice di Possibilità Pluviometrica è una funzione che mette in relazione la durata di un certo evento pluviometrico e l'altezza di pioggia prevista, per un dato tempo di ritorno.\\
+Quindi è possibile, svolgendo i calcoli per diversi tempi di ritorno, avere diverse LSPP per una stessa stazione di rilevamento (o per uno stesso sito).\\
+Al fine di semplificare la lettura del grafico, ed eventualmente l'estrapolazione del dato di pioggia, è possibile imporre che gli assi cartesiani abbiano la scala logaritmica; in questo modo, la linea curva interpolatrice dei punti diventa una retta.\\
+La traiettoria della linea segue l'andamento della funzione $h=at^n$, dove:
+\begin{itemize}
+\item $t$ è il parametro della durata dell'evento (espresso in ore);
+\item $a$ dipende dal tempo di ritorno;    
+\item $n$ è un valore compreso tra 0 e 1, ed è praticamente costante per una data stazione.
+\end{itemize}
+
+\subsection{Calcolo del tempo di corrivazione}
+Il tempo di corrivazione $t_c$ di un bacino è il periodo necessario affinché una qualsiasi massa d'acqua percorra lo spazio tra la sezione di chiusura ed il punto più idraulicamente distante ad essa.\\
+Questo tempo può anche essere visto come il periodo di pioggia necessario affinché ogni area del bacino sia contribuente al deflusso alla sezione di chiusura.\\
+Questo parametro è molto importante in idrologia, perché alla durata di precipitazione uguale a quella di corrivazione avviene il massimo deflusso. Se la precipitazione avesse un tempo inferiore, non tutto il bacino sarebbe contribuente al medesimo istante; se la durata di pioggia fosse superiore a quella di corrivazione, l'intensità sarebbe minore.\\
+Esistono diverse formule per calcolare il $t_c$ di un bacino, in questa relazione ho scelto di usare quella di Ferro (del 2002):
+\begin{equation}
+    T_c = 0.675 \cdot \sqrt{A}
+\end{equation}
+Nella formula occorre introdurre il valore di estensione in chilometri quadri, al fine di ottenere il tempo in ore.\\
+Svolgendo la formula, si ottiene che il tempo di corrivazione per il bacino del Boite è pari a 13.21 h, e quello del Piave è pari a 19.24 h.

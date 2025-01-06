@@ -1,1 +1,12 @@
-\section{Nozioni generali sull'utilizzo di HEC-HMS}
+\section{Nozioni generali su HEC-RAS e sul suo utilizzo}
+HEC-RAS è un programma di modellazione idraulica, utilizzato per studiare il flusso d'acqua nei canali naturali o non.\\
+Tale programma è stato prodotto dal Genio Militare Americano, venendo liberamente rilasciato nel 1995 \cite{hec-ras}.\\
+Al fine di poter compiere una simulazione idraulica è necessario che vengano definiti ed impostati alcuni parametri, tra i quali:
+\begin{itemize}
+    \item spaziali: come per esempio il dominio di calcolo (ovvero alveo e zone inondabili);
+    \item condizioni al contorno: ovvero la portata entrante nel dominio di calcolo e le caratteristiche del tratto uscente;
+    \item scabrezza del letto del fiume e delle aree inondabili (coefficiente di Manning);
+    \item corpi naturali/artificiali presenti in alveo (come per esempio piloni di ponti o arginature).
+\end{itemize}
+Tutti i parametri appena elencati sono strettamente collegati con la mesh, ovvero il reticolo di calcolo: mediante tale suddivisione (in elementi finiti) il programma svolge i calcoli di modellazione idraulica.\\
+La grandezza delle singole celle della griglia regola il numero di calcoli che il programma deve svolgere, con una conseguente variazione del tempo di processamento. Al fine di rendere più realistico il risultato del calcolo, è possibile imporre delle linee (breaklines) dove far aderire meglio la mesh alla realtà; per esempio, in prossimità delle arginature o nel caso di soglie in alveo.

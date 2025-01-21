@@ -34,6 +34,16 @@ Il software ricava i parametri del suolo dal file DTM (digital terrain model) de
 
 Per l'applicazione del modello idraulico, il software utilizza delle equazioni idrauliche, che vanno a considerare, per esempio, le perdite di carico localizzate, continue o le eventuali interazioni tra il flusso d'acqua in movimento e le geometrie dell'alveo \cite{hydraulic_equations}.
 
+\subsection{Coefficiente di scabrezza}
+Verranno svolte diverse simulazioni, andando a far variare di volta in volta il coefficiente di scabrezza (numero di Manning).\\
+Andando ad modificare la ``rugosità" del terreno, del fondo e delle sponde ci si attenderà dei risultati finali differenti. Infatti, per una condizione di alta scabrezza, si prevede che la velocità del flusso sia minore rispetto ad una condizione di minore scabrezza; di conseguenza, in modo inversamente proporzionale, andrà anche a variare la profondità del corpo idrico.\\
+Per esempio, le celle della mesh che vengono considerate come ``argine", hanno diversi valori di Manning, a seconda del caso:
+\begin{itemize}
+    \item caso di studio n° 1: 0.1;
+    \item caso di studio n° 2: 0.067;
+    \item caso di studio n° 3: 0.05.
+\end{itemize}
+
 \subsection{Geometrie in alveo}
 E' molto probabile che, soprattutto in caso di aree altamente urbanizzate, ci siano delle opere idrauliche in alveo, come per esempio soglie o ponti.\\
 Affinché il programma ne tenga in considerazione durante il calcolo, è necessario che l'operatore inserisca la geometria del profilo dell'opera, come per esempio del ponte \eqref{figure:profilo_ponte}. 
@@ -47,6 +57,17 @@ Per quanto riguarda la presenza di soglie, sarebbe opportuno indicarne (mediante
 
 \subsection{Condizioni al contorno}
 Le ``boundary conditions" rappresentano uno dei principali fattori in HEC-RAS, poiché influenzano i volumi e le portate agenti nel processo di simulazione \cite{boundary_conditions}.\\
-Le condizioni al contorno sono un insieme di parametri che vanno a descrivere le portate di deflusso in movimento, siano queste entranti o uscenti. Oltre ai semplici valori volumetrici o di portata, è importante riportare la pendenza del thalweg dell'alveo, perché regola la quantità di energia totale.\\
+Le condizioni al contorno sono un insieme di parametri che, tra le altre cose, vanno a descrivere le portate di deflusso in movimento, siano queste entranti o uscenti. Oltre ai semplici valori volumetrici o di portata, è importante riportare la pendenza del thalweg dell'alveo, perché regola la quantità di energia totale.\\
 Per il caso di questa relazione, i volumi e le portate sono stati ricavati da una precedente analisi idrologica mediante il software HEC-HMS \cite{progetto_hms}. Comunque, i risultati sono già stati riportati in precedenza all'interno di questa relazione.\\
-Per quanto riguarda la pendenza del thalweg, il valore è stato misurato mediante un apposito strumento disponibile all'interno di HEC-RAS. 
+Un ulteriore parametro importante per le condizioni al contorno è rappresentato dalla pendenza del thalweg dei tratti in ingresso e del tratto in uscita.\\
+L'inclinazione può essere ricavata mediante lo strumento di misura presente all'interno di RasMapper (tool nativo di HEC-RAS), e tali valori sono:
+\begin{itemize}
+    \item fiume Boite: 0.015°;
+    \item fiume Piave (inflow): 0.025°;
+    \item fiume Piave (outflow): 0.02°;
+\end{itemize}
+
+\subsection{Parametri di calcolo}
+L'intervallo computazionale della simulazione, ovvero il delay temporale con cui il programma svolge i calcoli, è stato impostato a 3 secondi; tale valore risulta un buon compromesso tra la bontà del risultato ottenuto ed il tempo impiegato per processare i parametri interni al dominio di calcolo.\\
+Inoltre, è stato scelto di imporre all'idrogramma in uscita un tempo discreto di 1 ora; in questo modo, è possibile osservare il risultato della simulazione idraulica per ogni 60 minuti di evento.\\
+La simulazione è stata compiuta per un tempo di 4 giorni, superiore all'evento idrologico di input: in questo modo è possibile osservare l'interezza dell'evento idraulico. 

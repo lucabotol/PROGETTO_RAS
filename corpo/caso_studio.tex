@@ -83,4 +83,82 @@ Anche in questo caso, è possibile notare come la profondità del corso d'acqua 
 
 \subsection{Evento di esondazione}
 Dai risultati delle simulazioni, risulta semplice notare il verificarsi di una esondazione del fiume nel centro abitato del paese di Perarolo di Cadore.\\
-Ai fini di protezione civile, è importante conoscere i volumi esondati ed il tirante d'acqua che si genera nelle aree interessate.
+Ai fini di protezione civile, è importante conoscere i volumi esondati ed il tirante d'acqua che si genera nelle aree interessate.\\
+Per fare ciò, è stato creato un profilo di studio lungo tutta l'arginatura che divide l'alveo del fiume e l'abitato del paese, che è stato chiamato ``profilo\textunderscore abitato".
+
+\begin{figure}[htb] \centering
+    \includegraphics[scale=0.5]{immagini/flow_centro_abitato.JPG}
+    \caption{Portata di flusso esondata nel centro abitato, rilevata mediante il ``profilo\textunderscore abitato".}
+    \label{figure:flow_centro_abitato}
+\end{figure}
+
+\begin{figure}[htb] \centering
+    \includegraphics[scale=0.5]{immagini/volume_accumulation_centro_abitato.JPG}
+    \caption{Volume cumulato di acqua esondata verso il centro abitato, rilevato mediante il ``profilo\textunderscore abitato".}
+    \label{figure:volume_accumulation_centro_abitato}
+\end{figure}
+
+\begin{figure}[htb] \centering
+    \includegraphics[scale=0.5]{immagini/depth_profilo_abitato.png}
+    \caption{Profondità del tirante idraulico massimo sfiorata dalle arginature (rappresentate mediante il ``profilo\textunderscore abitato").}
+    \label{figure:depth_profilo_abitato}
+\end{figure}
+
+Come è possibile notare nel diagramma dei volumi cumulati, la condizione più gravosa per il sistema avviene nella seconda simulazione.\\
+Nella tabella \eqref{table:risultati_arginatura} vengono riportati i principali parametri di esondazione, riferiti principalmente al rilievo mediante il profilo della zona d'abitato.
+\begin{table}[hbt]\centering
+    \caption{\textcolor{red}{Valori numerici riferiti all'evento di esondazione del tratto fluviale verso l'abitato. I valori di tirante idraulico e di portata al picco sono riferiti all'arginatura, mentre il volume totale può essere considerato per tutta l'area esondata.}}
+    \begin{tabular}{cccc}
+    \toprule
+    Sim. & Tirante idraulico [m] & Volume [1000 \unit{m^3}] & Portata al picco [\unit{m^3/s}] \\
+    \midrule
+    1 & 0.36 & 11.32 &   2.10\\
+    2 & 0.36 & 16.53 & 3.07  \\
+    3 & 0.30 & 10.95 & 1.74  \\
+    \bottomrule
+    \end{tabular}
+    \label{table:risultati_arginatura}
+    \end{table}
+
+Com'è possibile capire leggendo la tabella, il caso più gravoso per la comunità adiacente al fiume è prodotto dalla seconda simulazione, ovvero quella con un indice di scabrezza intermedio.
+
+\subsection{Aree di pericolo}
+Al fine di valutare la pericolosità di un'area, occorre innanzitutto considerare la tipologia di evento in atto; i criteri con cui è possibile differenziare un evento sono disponibili all'interno della ``Relazione generale" del PGRA \cite{rel_gen_pgra}.\\
+Essendo che l'evento di piena ha un tempo di ritorno di 215 anni, la probabilità di accadimento viene considerata ``medio-bassa".\\
+Successivamente, al fine di discretizzare l'attribuzione della pericolosità ad un'area, viene applicata la matrice di BUWAL, che va ad interpolare la probabilità d'accadimento e l'intensità dell'evento (che a sua volta è in funzione del tirante idraulico e della velocità del flusso).
+
+\begin{figure}[htb] \centering
+    \includegraphics[scale=0.5]{immagini/aree_pericolo_1.png}
+    \caption{Aree di pericolo ricavate dalla simulazione 1.}
+    \label{figure:aree_pericolo_1}
+\end{figure}
+
+\begin{figure}[htb] \centering
+    \includegraphics[scale=0.5]{immagini/aree_pericolo_2.png}
+    \caption{Aree di pericolo ricavate dalla simulazione 2.}
+    \label{figure:aree_pericolo_2}
+\end{figure}
+
+\begin{figure}[htb] \centering
+    \includegraphics[scale=0.5]{immagini/aree_pericolo_3.png}
+    \caption{Aree di pericolo ricavate dalla simulazione 3.}
+    \label{figure:aree_pericolo_3}
+\end{figure}
+
+\begin{figure}[htb] \centering
+    \includegraphics[scale=0.5]{immagini/part_aree_pericolo_1.png}
+    \caption{Aree di pericolo ricavate dalla simulazione 1 (particolare dell'abitato).}
+    \label{figure:part_aree_pericolo_1}
+\end{figure}
+
+\begin{figure}[htb] \centering
+    \includegraphics[scale=0.5]{immagini/part_aree_pericolo_2.png}
+    \caption{Aree di pericolo ricavate dalla simulazione 2 (particolare dell'abitato).}
+    \label{figure:part_aree_pericolo_2}
+\end{figure}
+
+\begin{figure}[htb] \centering
+    \includegraphics[scale=0.5]{immagini/part_aree_pericolo_3.png}
+    \caption{Aree di pericolo ricavate dalla simulazione 3 (particolare dell'abitato).}
+    \label{figure:part_aree_pericolo_3}
+\end{figure}

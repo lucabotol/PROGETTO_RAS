@@ -46,16 +46,17 @@ Per esempio, le celle della mesh che vengono considerate come ``argine", hanno d
     \item caso di studio n° 2: 0.067;
     \item caso di studio n° 3: 0.05.
 \end{itemize}
+All'interno di questo lavoro, le scabrezze sono state inserite mediante il caricamento all'interno del dominio di calcolo di un file raster relativo all'uso di suolo, a cui erano correlati gli indici di Manning.
 
 \subsection{Geometrie in alveo}
 E' molto probabile che, soprattutto in caso di aree altamente urbanizzate, ci siano delle opere idrauliche in alveo, come per esempio soglie o ponti.\\
 Tali elementi sono importanti, poiché potrebbero generare fenomeni di rigurgito, andando quindi ad innalzare il normale tirante idraulico dell'opera.\\
-Affinché il programma ne tenga in considerazione durante il calcolo, è necessario che l'operatore inserisca la geometria del profilo dell'opera, come per esempio del ponte \eqref{figure:profilo_ponte}. 
+Affinché il programma ne tenga in considerazione durante il calcolo, è necessario che l'operatore inserisca la geometria del profilo dell'opera, come per esempio del ponte nel Boite \eqref{figure:profilo_ponte}. 
 \begin{figure}[htb] \centering
     \includegraphics[scale=0.6]{immagini/profilo_ponte.JPG}
     \caption{Profilo di geometria del ponte nel fiume Boite.}
     \label{figure:profilo_ponte}
-    \end{figure}
+\end{figure}
 Essendo un corpo che cambia il normale flusso dell'acqua in alveo, HEC-RAS possiede delle proprie equazioni per calcolare il comportamento delle portate \cite{modeling_bridges}.\\
 Per quanto riguarda la presenza di soglie, sarebbe opportuno indicarne (mediante breaklines) la presenza, ed eventualmente cambiare il valore di scabrezza nelle celle contenenti la superficie dell'opera (che in molti sono fatte in calcestruzzo).\\
 E' opportuno evidenziare che il sistema di arginature non ricade all'interno di questa sezione, perché viene preso in considerazione come caratteristica del DEM.
@@ -79,7 +80,7 @@ Nella mappa \eqref{figure:profili}, è possibile vedere tutta la serie di profil
 
 \begin{figure}[htb] \centering
     \includegraphics[scale=0.7]{immagini/profili.JPG}
-    \caption{Serie di profili presenti in alveo e lungo le arginature.}
+    \caption{Serie di profili di studio presenti in alveo e lungo le arginature.}
     \label{figure:profili}
 \end{figure}
 

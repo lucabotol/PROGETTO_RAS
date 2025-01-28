@@ -81,6 +81,39 @@ Essendoci due ponti, i profili individuati in alveo sono 4: uno a monte ed uno a
 
 Anche in questo caso, è possibile notare come la profondità del corso d'acqua sia maggiore per l'evento di piena con i valori di Manning maggiori (come per esempio la prima simulazione).
 
+\subsection{Flusso transitato sotto i ponti}
+Utilizzando la funzione di HEC-RAS, denominata ``Plot Stage and Flow Hydrograph", è possibile ricavare l'idrogramma di deflusso dell'evento (e quindi anche la portata) che attraversa le luci dei ponti presenti in alveo.\\
+Per esempio, si riportano i diagrammi di deflusso (uno per ogni ponte) della terza simulazione, ovvero quella con valore di Manning inferiore rispetto alle altre due. 
+\begin{figure}[H] \centering
+    \includegraphics[scale=0.5]{immagini/flow_ponte_boite.JPG}
+    \caption{Portata di deflusso transitata al di sotto del ponte nel fiume Boite, calcolata con la terza simulazione.}
+    \label{figure:flow_ponte_boite}
+\end{figure}
+
+\begin{figure}[H] \centering
+    \includegraphics[scale=0.5]{immagini/flow_ponte_piave.JPG}
+    \caption{Portata di deflusso transitata al di sotto del ponte nel fiume Piave, calcolata con la terza simulazione. Il plot della linea invertita è dovuto solamente al differente verso di disegno della linea di profilo.}
+    \label{figure:flow_ponte_piave}
+\end{figure}
+
+%Ovviamente, essendo che l'evento idrologico è uguale per tutte le simulazioni (essendo calcolato per un TR comune) e che non avviene
+
+\begin{table}[hbt]\centering
+    \caption{\textcolor{red}{Valori numerici riferiti ai volumi di deflusso transitati attraverso le luci dei ponti dei rispettivi fiumi, a seconda della simulazione svolta. In tutti i casi, l'unità di misura è [1000 \unit{m^3}].}}
+    \begin{tabular}{ccc}
+    \toprule
+    Simulazione & V. Boite & V. Piave \\
+    \midrule
+    1 & 39660.54 & 35555.61 \\
+    2 & 39586.4 & 35551.91 \\
+    3 & 39619.15 & 35518.3  \\
+    \bottomrule
+    \end{tabular}
+    \label{table:flusso_ponti}
+    \end{table}
+
+La tabella \eqref{table:flusso_ponti} presenta dei valori che sono da contestualizzare, poiché i casi sono diversi a seconda del fiume preso in considerazione.
+
 \subsection{Evento di esondazione}
 Dai risultati delle simulazioni, risulta semplice notare il verificarsi di una esondazione del fiume nel centro abitato del paese di Perarolo di Cadore.\\
 Ai fini di protezione civile, è importante conoscere i volumi esondati ed il tirante d'acqua che si genera nelle aree interessate.\\

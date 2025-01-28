@@ -10,23 +10,30 @@ Al fine di poter compiere una simulazione idraulica è necessario che vengano de
     \item corpi naturali/artificiali presenti in alveo (come per esempio piloni di ponti o arginature).
 \end{itemize}
 
+Come descritto successivamente, in questo progetto sono state fatte tre simulazioni, ed a seconda del valore di Manning corrispondente si distingue:
+\begin{itemize}
+    \item prima simulazione: valore di Manning maggiore;
+    \item seconda simulazione: valore di Manning intermedio;
+    \item terza simulazione: valore di Manning inferiore.
+\end{itemize}
+
 \subsection{Sistema di calcolo}
 
 Tutti i parametri precedentemente elencati sono strettamente collegati con la mesh, ovvero il reticolo di calcolo: mediante tale suddivisione (in elementi finiti come linee o poligoni) il programma svolge i calcoli di modellazione idraulica \cite{grid_and_dual_grid}.\\
 La grandezza delle singole celle della griglia regola il numero di calcoli che il programma deve svolgere, con una conseguente variazione del tempo di processamento. Ovviamente, il tempo di calcolo e la bontà del risultato sono due fattori inversamente proporzionali rispetto alla grandezza delle celle di calcolo.\\
-Teoricamente, sarebbe possibile imporre una mesh di calcolo a maglie estremamente piccole, in modo da rendere la simulazione più affidabile, purtroppo questa ipotesi renderebbe il processo globalmente meno efficiente.\\
+Teoricamente, sarebbe possibile imporre una mesh di calcolo a maglie estremamente piccole, in modo da rendere la simulazione più affidabile; purtroppo quest'ultima ipotesi renderebbe il processo globalmente meno efficiente.\\
 Affinché sia possibile applicare i principali algoritmi di analisi, ad ogni cella della mesh è possibile associare un relativo valore di scabrezza, che varia in base alla tipologia di superficie indicata (come per esempio arginature o tratti in roccia).\\
 Al fine di rendere più realistico il risultato finale, è possibile imporre delle linee (breaklines) dove far aderire meglio la mesh al suolo, cambiando la disposizione del reticolo o la sua grandezza; per esempio, in prossimità delle arginature o nel caso di soglie in alveo \eqref{figure:particolare_mesh}.
 
-\begin{figure}[htb] \centering
+\begin{figure}[H] \centering
     \includegraphics[scale=0.3]{immagini/particolare_mesh.JPG}
-    \caption{Frazione della mesh del tratto di studio analizzato.}
+    \caption{Frazione della mesh del tratto di studio analizzato. E' possibile notare le ulteriori breaklines disegnate all'interno del dominio di calcolo.}
     \label{figure:particolare_mesh}
 \end{figure}
 
-Il software ricava i parametri del suolo dal file DTM (digital terrain model) della relativa area di studio, precedentemente caricato dall'utilizzatore \eqref{figure:particolare_dtm}.
+Il software ricava i parametri del suolo dal file DTM (Digital Terrain Model) della relativa area di studio, precedentemente caricato dall'utilizzatore \eqref{figure:particolare_dtm}.
 
-\begin{figure}[htb] \centering
+\begin{figure}[H] \centering
     \includegraphics[scale=0.3]{immagini/particolare_dtm.JPG}
     \caption{Particolare del DTM del tratto di studio analizzato.}
     \label{figure:particolare_dtm}

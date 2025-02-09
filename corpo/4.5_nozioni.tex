@@ -21,9 +21,9 @@ Come descritto successivamente, in questo progetto sono state fatte tre simulazi
 
 Tutti i parametri precedentemente elencati sono strettamente collegati con la mesh, ovvero il reticolo di calcolo: mediante tale suddivisione (in elementi finiti come linee o poligoni) il programma svolge i calcoli di modellazione idraulica \cite{grid_and_dual_grid}.\\
 La grandezza delle singole celle della griglia regola il numero di calcoli che il programma deve svolgere, con una conseguente variazione del tempo di processamento. Ovviamente, il tempo di calcolo e la bontà del risultato sono due fattori inversamente proporzionali rispetto alla grandezza delle celle di calcolo.\\
-Teoricamente, sarebbe possibile imporre una mesh di calcolo a maglie estremamente piccole, in modo da rendere la simulazione più affidabile; purtroppo quest'ultima ipotesi renderebbe il processo globalmente meno efficiente.\\
+Teoricamente, sarebbe possibile imporre una mesh di calcolo a maglie estremamente piccole, in modo da rendere la simulazione più affidabile; infatti, il modello di calcolo (fisicamente basato) ricava il verso di percorrenza del flusso considerando la linea di massima pendenza. Purtroppo, una mesh troppo infittita renderebbe il processo di ottenimento dei risultati globalmente meno efficiente.\\
 Affinché sia possibile applicare i principali algoritmi di analisi, ad ogni cella della mesh è possibile associare un relativo valore di scabrezza, che varia in base alla tipologia di superficie indicata (come per esempio arginature o tratti in roccia).\\
-Al fine di rendere più realistico il risultato finale, è possibile imporre delle linee (breaklines) dove far aderire meglio la mesh al suolo, cambiando la disposizione del reticolo o la sua grandezza; per esempio, in prossimità delle arginature o nel caso di soglie in alveo \eqref{figure:particolare_mesh}.
+Al fine di rendere più realistico il risultato finale, è possibile imporre delle linee (breaklines) dove far aderire meglio la mesh alle singolarità topografiche del suolo, cambiando la disposizione del reticolo o la sua grandezza; per esempio, in prossimità delle arginature o nel caso di soglie in alveo \eqref{figure:particolare_mesh}.
 
 \begin{figure}[H] \centering
     \includegraphics[scale=0.3]{immagini/particolare_mesh.JPG}
@@ -42,12 +42,12 @@ Il software ricava i parametri del suolo dal file DTM (Digital Terrain Model) de
 Per l'applicazione del modello idraulico, il software utilizza delle equazioni idrauliche, che vanno a considerare, per esempio, le perdite di carico localizzate, continue o le eventuali interazioni tra il flusso d'acqua in movimento e le geometrie dell'alveo \cite{hydraulic_equations}.
 
 \subsection{Coefficiente di scabrezza}
-Il coefficiente di scabrezza è una caratteristica fisica intrinseca a qualsiasi conduttore idraulico (corsi d'acqua, tubazioni,...) e rappresenta l'elemento resistivo al naturale moto del corpo idrico.\\
+Il coefficiente di scabrezza è una caratteristica fisica intrinseca a qualsiasi corpo sui cui si deve propagare un fluido (corsi d'acqua, tubazioni,...) e rappresenta l'elemento resistivo al naturale moto del corpo idrico.\\
 La scabrezza è dipendente da molti fattori, come per esempio la litologia del tratto o la presenza o meno di vegetazione.\\
 Il valore di rugosità può essere rilevato in campo, ma nella maggioranza dei casi viene fatto uso delle risorse presenti in letteratura. La rugosità può essere espressa secondo il coefficiente ks, oppure mediante il suo reciproco, ovvero il coefficiente di Manning.\\
 In questa relazione verranno svolte diverse simulazioni, andando a far variare di volta in volta il coefficiente di scabrezza (numero di Manning).\\
-Andando ad modificare la ``rugosità" del terreno, del fondo e delle sponde ci si attenderà dei risultati finali differenti. Infatti, per una condizione di alta scabrezza, si prevede che la velocità del flusso sia minore rispetto ad una condizione di minore scabrezza; di conseguenza, in modo inversamente proporzionale, andrà anche a variare la profondità del corpo idrico.\\
-Per esempio, le celle della mesh che vengono considerate come ``argine", hanno diversi valori di Manning, a seconda del caso:
+Andando ad modificare la ``rugosità" del terreno, del fondo e delle sponde ci si attenderà dei risultati finali differenti. Infatti, per una condizione di alta scabrezza, si prevede che la velocità del flusso sia minore rispetto ad una condizione di minore scabrezza; di conseguenza, in modo inversamente proporzionale, andrà anche a variare la profondità lungo i tratti considerati.\\
+Per esempio, le celle della mesh che rappresentano l'elemento ``argine", hanno diversi valori di Manning, a seconda del caso:
 \begin{itemize}
     \item caso di studio n° 1: 0.1;
     \item caso di studio n° 2: 0.067;
@@ -57,7 +57,7 @@ All'interno di questo lavoro, le scabrezze sono state inserite mediante il caric
 
 \subsection{Geometrie in alveo}
 E' molto probabile che, soprattutto in caso di aree altamente urbanizzate, ci siano delle opere idrauliche in alveo, come per esempio soglie o ponti.\\
-Tali elementi sono importanti, poiché potrebbero generare fenomeni di rigurgito, andando quindi ad innalzare il normale tirante idraulico dell'opera.\\
+Tali elementi sono importanti, poiché potrebbero generare fenomeni di rigurgito, andando quindi ad innalzare il normale tirante idraulico nel tratto appena precedente all'opera.\\
 Affinché il programma ne tenga in considerazione durante il calcolo, è necessario che l'operatore inserisca la geometria del profilo dell'opera, come per esempio del ponte nel Boite \eqref{figure:profilo_ponte}. 
 \begin{figure}[htb] \centering
     \includegraphics[scale=0.6]{immagini/profilo_ponte.JPG}
@@ -66,18 +66,18 @@ Affinché il programma ne tenga in considerazione durante il calcolo, è necessa
 \end{figure}
 Essendo un corpo che cambia il normale flusso dell'acqua in alveo, HEC-RAS possiede delle proprie equazioni per calcolare il comportamento delle portate \cite{modeling_bridges}.\\
 Per quanto riguarda la presenza di soglie, sarebbe opportuno indicarne (mediante breaklines) la presenza, ed eventualmente cambiare il valore di scabrezza nelle celle contenenti la superficie dell'opera (che in molti sono fatte in calcestruzzo).\\
-E' opportuno evidenziare che il sistema di arginature non ricade all'interno di questa sezione, perché viene preso in considerazione come caratteristica del DEM.
+E' opportuno evidenziare che tutte le geometrie delle arginature non sono state inserite manualmente, poiché la loro presenza viene evidenziata dal DEM.
 
 \subsection{Condizioni al contorno}
 Le ``boundary conditions" rappresentano uno dei principali fattori in HEC-RAS, poiché influenzano i volumi e le portate agenti nel processo di simulazione \cite{boundary_conditions}.\\
 Le condizioni al contorno sono un insieme di parametri che, tra le altre cose, vanno a descrivere le portate di deflusso in movimento, siano queste entranti o uscenti. Oltre ai semplici valori volumetrici o di portata, è importante riportare la pendenza del thalweg dell'alveo, perché regola la quantità di energia totale.\\
 Per il caso di questa relazione, i volumi e le portate sono stati ricavati da una precedente analisi idrologica mediante il software HEC-HMS \cite{progetto_hms}. Comunque, i risultati sono già stati riportati in precedenza all'interno di questa relazione.\\
 Un ulteriore parametro importante per le condizioni al contorno è rappresentato dalla pendenza del thalweg dei tratti in ingresso e del tratto in uscita.\\
-L'inclinazione può essere ricavata mediante lo strumento di misura presente all'interno di RasMapper (tool nativo di HEC-RAS), e tali valori sono:
+L'inclinazione può essere ricavata mediante lo strumento di misura presente all'interno di RasMapper (tool nativo di HEC-RAS), e tali valori sono (valori di tangenza dell'angolo):
 \begin{itemize}
-    \item fiume Boite: 0.015°;
-    \item fiume Piave (inflow): 0.025°;
-    \item fiume Piave (outflow): 0.02°;
+    \item fiume Boite: 0.015;
+    \item fiume Piave (inflow): 0.025;
+    \item fiume Piave (outflow): 0.02;
 \end{itemize}
 
 \subsection{Profili di studio}
@@ -92,6 +92,7 @@ Nella mappa \eqref{figure:profili}, è possibile vedere tutta la serie di profil
 \end{figure}
 
 \subsection{Parametri di calcolo}
-L'intervallo computazionale della simulazione, ovvero il delay temporale con cui il programma svolge i calcoli, è stato impostato a 3 secondi; tale valore risulta un buon compromesso tra la bontà del risultato ottenuto ed il tempo impiegato per processare i parametri interni al dominio di calcolo.\\
-Inoltre, è stato scelto di imporre all'idrogramma in uscita un tempo discreto di 1 ora; in questo modo, è possibile osservare il risultato della simulazione idraulica per ogni 60 minuti di evento.\\
-La simulazione è stata compiuta per un tempo di 4 giorni, superiore all'evento idrologico di input: in questo modo è possibile osservare l'interezza dell'evento idraulico. 
+L'intervallo computazionale della simulazione, ovvero il delay temporale con cui il programma svolge i calcoli, è stato impostato a 3 secondi; tale valore risulta un buon compromesso tra la bontà del risultato ottenuto ed il tempo impiegato per simulare tutto l'evento di piena.\\
+Inoltre, è stato scelto di imporre all'idrogramma del fiume Piave (outflow) un tempo discreto di 1 ora; in questo modo, è possibile osservare il risultato della simulazione idraulica per ogni 60 minuti di evento.\\
+Sono stati simulati 4 giorni di evento idraulico, superiore rispetto a quello idrologico di input: in questo modo è possibile osservare l'interezza dell'evento idraulico. 
+

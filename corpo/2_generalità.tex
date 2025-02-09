@@ -2,7 +2,7 @@
 \label{section:evento_pluviometrico}
 Con bacino idrografico si intende tutta la superficie, definito un punto (sezione di chiusura), da cui proviene l'acqua di deflusso e che la attraversa. Infatti, al fine dello studio idraulico di una qualsiasi area, la conoscenza del bacino idrografico permette di conoscere la superficie di terreno da cui viene generato il runoff, che permette di quantificare il volume idrico alla sezione di chiusura, con conseguente analisi di eventuali inondazioni verso le piane alluvionali.\\
 Il tratto interessato da questo studio idraulico è quello della confluenza tra il fiume Boite ed il fiume Piave, nel Comune di Perarolo di Cadore (BL).\\
-Vengono riportati i bacini idrogeologici dei fiumi Boite \cite{fiume_boite} e Piave \cite{fiume_piave}.
+Vengono riportati i bacini idrografici a monte delle sezioni di chiusura scelte nella modellazione idrologica dei fiumi Boite \cite{fiume_boite} e Piave \cite{fiume_piave}.
 \begin{figure}[H] \centering
     \begin{minipage}[]{7cm}
         \includegraphics[scale=0.73]{immagini/bac_boite.PNG}
@@ -33,7 +33,8 @@ Il fiume Boite (proveniente da ovest) ed il fiume Piave (proveniente da est) gen
     \label{minipage:confl_dtm}
     \end{minipage} 
         \end{figure}
-Essendo presenti delle opere idrauliche (come ponti o arginature), al fine di ottimizzare l'analisi mediante il programma HEC-RAS, è necessario riportare tali geometrie.
+
+Nell'area studio sono presenti opere idrauliche di diversa natura (come per esempio ponti o arginature); si presenta quindi la necessità di evidenziare all'interno del modello idraulico la presenza di tali geometrie.
 
 \begin{figure}[H] \centering
 \includegraphics[scale=0.7]{immagini/confl_geom.PNG}
@@ -85,4 +86,4 @@ I risultati dell'analisi idrologica possono essere riassunti mediante le seguent
 
 Sintetizzando, mediante l'analisi statistico-probabilistica è stata ricavata la curva LSPP per il tempo di ritorno di 215 anni; tale funzione è pari a $h=61.517 \cdot t ^{0.512}$.\\
 A fronte di una precipitazione con tempo di ritorno pari a 215 anni, il bacino del Boite genera un picco di deflusso di 458.7 \unit{m^3/s}, mentre il bacino del Piave ne genera uno complessivo di 446.5 \unit{m^3/s}.\\
-L'altro risultato importante da considerare è il volume defluito alla sezione di chiusura alla fine dell'evento pluviometrico con tempo di ritorno di 215 anni, che è pari a 101.49 mm per il bacino del Boite e 43.53 mm per il bacino del Piave.
+L'altro risultato importante da considerare è il volume defluito alla sezione di chiusura alla fine dell'evento pluviometrico con tempo di ritorno di 215 anni, che è pari a 35873 \unit{1000 \cdot m^3} per il bacino del Boite e 34774 \unit{1000 \cdot m^3} per il bacino del Piave.

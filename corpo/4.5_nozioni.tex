@@ -37,7 +37,7 @@ Il software ricava i parametri del suolo dal file DTM (Digital Terrain Model) de
     \includegraphics[scale=0.3]{immagini/particolare_dtm.JPG}
     \caption{Particolare del DTM del tratto di studio analizzato.}
     \label{figure:particolare_dtm}
-    \end{figure}
+\end{figure}
 
 Per l'applicazione del modello idraulico, il software utilizza delle equazioni idrauliche, che vanno a considerare, per esempio, le perdite di carico localizzate, continue o le eventuali interazioni tra il flusso d'acqua in movimento e le geometrie dell'alveo \cite{hydraulic_equations}.
 
@@ -53,16 +53,45 @@ Per esempio, le celle della mesh che rappresentano l'elemento ``argine", hanno d
     \item caso di studio n° 2: 0.067;
     \item caso di studio n° 3: 0.05.
 \end{itemize}
-All'interno di questo lavoro, le scabrezze sono state inserite mediante il caricamento all'interno del dominio di calcolo di un file raster relativo all'uso di suolo, a cui erano correlati gli indici di Manning.
+All'interno di questo lavoro, le scabrezze sono state inserite mediante il caricamento all'interno del dominio di calcolo di diversi file raster relativi all'uso di suolo, a cui erano correlati gli indici di Manning ed ognuno proprio al caso di studio.
+
+\begin{figure}[H] \centering
+    \includegraphics[scale=0.4]{immagini/land_cover_1.JPG}
+    \caption{File raster raffigurante la scabrezza del suolo, per il caso di studio 1.}
+    \label{figure:land_cover_1}
+\end{figure}
+\begin{figure}[H] \centering
+    \includegraphics[scale=0.4]{immagini/land_cover_2.JPG}
+    \caption{File raster raffigurante la scabrezza del suolo, per il caso di studio 2.}
+    \label{figure:land_cover_2}
+\end{figure}
+\begin{figure}[H] \centering
+    \includegraphics[scale=0.4]{immagini/land_cover_3.JPG}
+    \caption{File raster raffigurante la scabrezza del suolo, per il caso di studio 3.}
+    \label{figure:land_cover_3}
+\end{figure}
+Al fine di dover ricavare il valore di scabrezza di ogni singola cella, l'utilizzo di un qualsiasi software GIS semplificherebbe tale azione.
 
 \subsection{Geometrie in alveo}
 E' molto probabile che, soprattutto in caso di aree altamente urbanizzate, ci siano delle opere idrauliche in alveo, come per esempio soglie o ponti.\\
 Tali elementi sono importanti, poiché potrebbero generare fenomeni di rigurgito, andando quindi ad innalzare il normale tirante idraulico nel tratto appena precedente all'opera.\\
-Affinché il programma ne tenga in considerazione durante il calcolo, è necessario che l'operatore inserisca la geometria del profilo dell'opera, come per esempio del ponte nel Boite \eqref{figure:profilo_ponte}. 
+Affinché il programma ne tenga in considerazione durante il calcolo, è necessario che l'operatore inserisca la geometria del profilo dell'opera, come per esempio del ponte nel Boite \eqref{figure:profilo_ponte} o nel Piave \eqref{figure:profilo_ponte_piave}.\\
+L'inserimento della geometria da parte dell'operatore necessita la conoscenza delle principali misure dell'opera, tra cui:
+\begin{itemize}
+    \item altezza dell'impalcato;
+    \item dimensione delle sponde laterali;
+    \item numero di piloni e la loro altezza/larghezza;
+    \item dimensione di eventuali particolari (come per esempio cordonate o muretti).
+\end{itemize} 
 \begin{figure}[htb] \centering
     \includegraphics[scale=0.6]{immagini/profilo_ponte.JPG}
     \caption{Profilo di geometria del ponte nel fiume Boite.}
     \label{figure:profilo_ponte}
+\end{figure}
+\begin{figure}[htb] \centering
+    \includegraphics[scale=0.6]{immagini/profilo_ponte_piave.JPG}
+    \caption{Profilo di geometria del ponte nel fiume Piave.}
+    \label{figure:profilo_ponte_piave}
 \end{figure}
 Essendo un corpo che cambia il normale flusso dell'acqua in alveo, HEC-RAS possiede delle proprie equazioni per calcolare il comportamento delle portate \cite{modeling_bridges}.\\
 Per quanto riguarda la presenza di soglie, sarebbe opportuno indicarne (mediante breaklines) la presenza, ed eventualmente cambiare il valore di scabrezza nelle celle contenenti la superficie dell'opera (che in molti sono fatte in calcestruzzo).\\

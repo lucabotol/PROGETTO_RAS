@@ -2,6 +2,30 @@
 In questa sezione di relazione verranno esposti i risultati restituiti dal HEC-RAS.\\
 Grazie alle sezioni di profilo \eqref{figure:profili}, è possibile ricavare il massimo andamento del flusso dell'evento. Inoltre, mediante la funzione simil-gis di RasMapper, è possibile interrogare i singoli layer e ricavare i valori puntuali per ogni punto interno al dominio di calcolo.
 
+\subsection{Differenza tra gli idrogrammi}
+In questa sezione vengono riportati due grafici idraulici: il primo rappresenta l'idrogramma entrante nel dominio, ovvero quello calcolato con HEC-HMS; il secondo rappresenta i deflussi uscenti dal dominio, ricavati con HEC-RAS.\\
+Un altro modo per vedere il fenomeno d'evento sarebbe quello di unire il diagramma di deflusso uscente dal dominio di calcolo e lo ietogramma che genera la pioggia utile.
+\begin{figure}[H] \centering
+    \includegraphics[scale=0.6]{immagini/portate_pluviometriche.png}
+    \caption{Grafico riportante le diverse portate entranti nel dominio di calcolo (ovvero del fiume Boite e del fiume Piave).}
+    \label{figure:portate_pluviometriche}
+\end{figure}
+\begin{figure}[H] \centering
+    \includegraphics[scale=0.6]{immagini/portate_deflusso.png}
+    \caption{Grafico riportante le diverse portate uscenti dal dominio di calcolo (ovvero solamente dal fiume Piave).}
+    \label{figure:portate_deflusso}
+\end{figure}
+
+\begin{table}[H] \centering
+    \caption{\textcolor{red}{Valori numerici riferiti ai volumi entranti ed uscenti dal dominio di calcolo. L'unità di misura per ogni valore è [1000 \unit{m^3}]. Il diverso valore tra la somma dei volumi entranti e quello uscente è dovuto al fatto che il tempo di simulazione idrologica (svolta in HEC-HMS) è superiore rispetto alla simulazione idraulica compiuta in HEC-RAS.}}
+    \begin{tabular}{ccccc}
+    \toprule
+    $Q_i$ Boite & $Q_i$ Piave & $Q_u$ 1 & $Q_u$ 2 & $Q_u$ 3\\
+     35873.1 &34774.2 & 39660.54 &  39586.4 & 39619.15\\ 
+    \bottomrule 
+    \end{tabular}
+    \end{table}
+
 \subsection{Flusso transitato nel fiume Boite e Piave}
 I diagramma di velocità e profondità del tirante sono riportati successivamente nelle figure \eqref{figure:depth_boite}\eqref{figure:velocity_boite}\eqref{figure:depth_piave}\eqref{figure:velocity_piave}.\\
 I profili utilizzati sono quelli denominati ``profilo\textunderscore boite" e ``profilo\textunderscore piave".
